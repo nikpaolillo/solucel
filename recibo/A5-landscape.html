@@ -1,0 +1,336 @@
+<html lang="es" ng-app>
+<head>
+  <link rel="stylesheet" href="landscape.css">
+  <script src="angular.min.js"></script>
+  <script src="jquery.min.js"></script>
+  <script>
+    /*************************************************************/
+// NumeroALetras
+// The MIT License (MIT)
+//
+// Copyright (c) 2015 Luis Alfredo Chee
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+//
+// @author Rodolfo Carmona
+// @contributor Jean (jpbadoino@gmail.com)
+/*************************************************************/
+function Unidades(num){
+
+    switch(num)
+    {
+        case 1: return "UN";
+        case 2: return "DOS";
+        case 3: return "TRES";
+        case 4: return "CUATRO";
+        case 5: return "CINCO";
+        case 6: return "SEIS";
+        case 7: return "SIETE";
+        case 8: return "OCHO";
+        case 9: return "NUEVE";
+    }
+
+    return "";
+}//Unidades()
+
+function Decenas(num){
+
+    decena = Math.floor(num/10);
+    unidad = num - (decena * 10);
+
+    switch(decena)
+    {
+        case 1:
+            switch(unidad)
+            {
+                case 0: return "DIEZ";
+                case 1: return "ONCE";
+                case 2: return "DOCE";
+                case 3: return "TRECE";
+                case 4: return "CATORCE";
+                case 5: return "QUINCE";
+                default: return "DIECI" + Unidades(unidad);
+            }
+        case 2:
+            switch(unidad)
+            {
+                case 0: return "VEINTE";
+                default: return "VEINTI" + Unidades(unidad);
+            }
+        case 3: return DecenasY("TREINTA", unidad);
+        case 4: return DecenasY("CUARENTA", unidad);
+        case 5: return DecenasY("CINCUENTA", unidad);
+        case 6: return DecenasY("SESENTA", unidad);
+        case 7: return DecenasY("SETENTA", unidad);
+        case 8: return DecenasY("OCHENTA", unidad);
+        case 9: return DecenasY("NOVENTA", unidad);
+        case 0: return Unidades(unidad);
+    }
+}//Unidades()
+
+function DecenasY(strSin, numUnidades) {
+    if (numUnidades > 0)
+    return strSin + " Y " + Unidades(numUnidades)
+
+    return strSin;
+}//DecenasY()
+
+function Centenas(num) {
+    centenas = Math.floor(num / 100);
+    decenas = num - (centenas * 100);
+
+    switch(centenas)
+    {
+        case 1:
+            if (decenas > 0)
+                return "CIENTO " + Decenas(decenas);
+            return "CIEN";
+        case 2: return "DOSCIENTOS " + Decenas(decenas);
+        case 3: return "TRESCIENTOS " + Decenas(decenas);
+        case 4: return "CUATROCIENTOS " + Decenas(decenas);
+        case 5: return "QUINIENTOS " + Decenas(decenas);
+        case 6: return "SEISCIENTOS " + Decenas(decenas);
+        case 7: return "SETECIENTOS " + Decenas(decenas);
+        case 8: return "OCHOCIENTOS " + Decenas(decenas);
+        case 9: return "NOVECIENTOS " + Decenas(decenas);
+    }
+
+    return Decenas(decenas);
+}//Centenas()
+
+function Seccion(num, divisor, strSingular, strPlural) {
+    cientos = Math.floor(num / divisor)
+    resto = num - (cientos * divisor)
+
+    letras = "";
+
+    if (cientos > 0)
+        if (cientos > 1)
+            letras = Centenas(cientos) + " " + strPlural;
+        else
+            letras = strSingular;
+
+    if (resto > 0)
+        letras += "";
+
+    return letras;
+}//Seccion()
+
+function Miles(num) {
+    divisor = 1000;
+    cientos = Math.floor(num / divisor)
+    resto = num - (cientos * divisor)
+
+    strMiles = Seccion(num, divisor, "UN MIL", "MIL");
+    strCentenas = Centenas(resto);
+
+    if(strMiles == "")
+        return strCentenas;
+
+    return strMiles + " " + strCentenas;
+}//Miles()
+
+function Millones(num) {
+    divisor = 1000000;
+    cientos = Math.floor(num / divisor)
+    resto = num - (cientos * divisor)
+
+    strMillones = Seccion(num, divisor, "UN MILLON DE", "MILLONES DE");
+    strMiles = Miles(resto);
+
+    if(strMillones == "")
+        return strMiles;
+
+    return strMillones + " " + strMiles;
+}//Millones()
+
+function NumeroALetras(num) {
+    var data = {
+        numero: num,
+        enteros: Math.floor(num),
+        centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
+        letrasCentavos: "",
+        letrasMonedaPlural: 'PESOS',//"PESOS", 'Dólares', 'Bolívares', 'etcs'
+        letrasMonedaSingular: 'PESO', //"PESO", 'Dólar', 'Bolivar', 'etc'
+
+        letrasMonedaCentavoPlural: "CENTAVOS",
+        letrasMonedaCentavoSingular: "CENTAVO"
+    };
+
+    if (data.centavos > 0) {
+        data.letrasCentavos = "CON " + (function (){
+            if (data.centavos == 1)
+                return Millones(data.centavos) + " " + data.letrasMonedaCentavoSingular;
+            else
+                return Millones(data.centavos) + " " + data.letrasMonedaCentavoPlural;
+            })();
+    };
+
+    if(data.enteros == 0)
+        return "CERO " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+    if (data.enteros == 1)
+        return Millones(data.enteros) + " " + data.letrasMonedaSingular + " " + data.letrasCentavos;
+    else
+        return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
+}//NumeroALetras()
+  </script>
+</head>
+
+<body>
+	<!-- Angular -->
+	<div id="formAngular">
+    <form>
+      <h3>Cabezera de Recibo</h3>
+      <hr>
+      <label>Mi empresa:</label><br>
+      <input type="text" ng-model="yourCompany" placeholder="Enter name" ng-init="yourCompany='Sinaptica'"><br>
+      <label>Nro de Recibo:</label><br>
+      <input type="text" ng-model="yourReceipt" placeholder="Enter Nro Receipt" ng-init="yourReceipt='0001-00000000'"><br>
+      <label>Fecha:</label><br>
+      <input type="text" ng-model="yourDay" placeholder="Enter dd/mm/aa"><br>
+      <label>Cuit:</label><br>
+      <input type="text" ng-model="yourCuit" placeholder="Enter 22-22222222-2"><br>
+      <label>IIBB:</label><br>
+      <input type="text" ng-model="yourIibb" placeholder="Enter 33-33333333-3" ng-init="yourIibb='Exento'"><br>
+      <label>INI DE ACT:</label><br>
+      <input type="text" ng-model="yourInit" placeholder="Enter dd/mm/aa" ng-init="yourInit='01/09/2012'"><br>
+    </form>
+    <form>
+      <h3>Cuerpo del recibo</h3>
+      <hr>
+      <label>Recibo de:</label><br>
+      <input type="text" ng-model="yourReceiptName" placeholder="Enter name"><br>
+      <label>Cantidad:</label><br>
+      <input type="text" ng-model="yourAmount" placeholder="Enter amount"><br>
+      <label>En concepto de:</label><br>
+      <input type="text" ng-model="yourConcept" placeholder="Enter date"><br>
+    </form>
+    <form>
+      <h4>Medios de pago</h4>
+      <hr>
+      <label>Efectivo:</label><br>
+      <input type="text" ng-model="yourMoney" placeholder="Enter amount"><br>
+      <label>Transferencia Bancaria:</label><br>
+      <input type="text" ng-model="yourTransfer" placeholder="Enter amount"><br>
+      <label>Dep&oacute;sito:</label><br>
+      <input type="text" ng-model="yourDeposit" placeholder="Enter amount"><br>
+      <label>Cheque:</label><br>
+      <input type="text" ng-model="yourCheque" placeholder="Enter amount"><br>
+    </form>
+	</div>
+
+	<div id="page">
+    <div class="original bordeRecibo">
+      <header>
+        <!-- Lado Izquierdo -->
+        <div class="column left">
+            <div class="container">
+                <div class="row">
+                    <img src="logo-sinaptica.png" width="148" height="55">
+                </div>
+                <div class="row text-left h3 negrita">{{yourCompany}}</div>
+                <div class="row text-left h3">Security in Mind</div>
+                <div class="row text-left h3">Balcarce 910 PB, Rosario</div>
+            </div>
+        </div>
+
+        <!-- Lado Central -->
+        <div class="column center text-center"> <span id="tipoComprobante">X</span>
+          <p id="leyendaTipoComprobante" class="preimpreso">DOCUMENTO<br>NO VALIDO<br>COMO<br>FACTURA</p>
+        </div>
+
+        <!-- Lado Derecho -->
+        <div class="column right">
+            <div class="container">
+                <div id="lblComprobante" class="row text-center negrita h1">RECIBO</div>
+                <div id="lblNroCmp" class="row text-center negrita h3"><span class="preimpreso">Nro</span> {{yourReceipt}}</div>
+                <div id="lblOriginalDuplicado" class="row text-center h3">ORIGINAL</div>
+                <div class="row text-left h3">FECHA <span class="pull-right">{{yourDay}}</span></div>
+                <div class="row text-left h3">CUIT <span class="pull-right">{{yourCuit}}</span></div>
+                <div class="row text-left h3">IIBB <span class="pull-right">{{yourIibb}}</span></div>
+                <div class="row text-left h3">INI DE ACT <span class="pull-right">{{yourInit}}</span></div>
+            </div>
+        </div>
+      </header>
+
+      <section>
+        <span class="preimpreso">Recibimos de</span> {{yourReceiptName}}
+        <br>
+        <span class="preimpreso">la cantidad de </span><span id="importeEnLetras"></span>
+      </section>
+
+      <section id="sectionMedioPago">
+        <span class="preimpreso">Mediante</span>
+        <div class="row" ng-show="yourMoney">
+          <span>Efectivo</span>
+          <span class="pull-right negrita importeEnPesos">{{yourMoney}}</span>
+        </div>
+        <div class="row" ng-show="yourTransfer">
+          <span>Transferencia Bancaria</span>
+          <span class="pull-right negrita importeEnPesos">{{yourTransfer}}</span>
+        </div>
+        <div class="row" ng-show="yourDeposit">
+          <span>Dep&oacute;sito</span>
+          <span class="pull-right negrita importeEnPesos">{{yourDeposit}}</span>
+        </div>
+        <div class="row" ng-show="yourCheque">
+          <span>Cheque</span>
+          <span class="pull-right negrita importeEnPesos">{{yourCheque}}</span>
+        </div>
+      </section>
+
+      <section>
+        <span class="preimpreso">En concepto de</span><br> {{yourConcept}}
+				<br>
+      </section>
+
+      <footer>
+        <section id="total">
+          <div class="row text-right">
+            <span class="preimpreso">TOTAL</span>
+            <span class="negrita importeEnPesos">{{yourMoney -- yourTransfer -- yourDeposit -- yourCheque}}</span>
+          </div>
+        </section>
+
+        <section id="firma">
+          <div class="row">
+            <div class="col-6">
+              <div class="hr pull-right">&nbsp;</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <p class="text-right">{{yourCompany}}</p>
+            </div>
+          </div>
+        </section>
+      </footer>
+    </div>
+  </div><!-- Page1 -->
+  <script>
+    $(document).ready(function(){
+      $('input[ng-model="yourAmount"]').on('input', function(a, b){
+        var numero = NumeroALetras($(this).val());
+        $('#importeEnLetras').html(numero);
+      });
+    });
+  </script>
+</body>
+</html>

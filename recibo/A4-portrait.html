@@ -1,0 +1,117 @@
+<html lang="es">
+<head>
+	<link rel="stylesheet" href="../css/recibo.css">
+</head>
+
+<body>
+	<div id="botonera">
+		<button onClick="javascript:window.print();">Imprimir</button>
+	</div>
+
+	<div id="page1">
+
+		<div class="bordeRecibo">
+			<header>
+
+				<!-- Lado Izquierdo -->
+				<div class="column left">
+					<div class="container">
+						<div class="row text-left">
+							<img src="http://solucel.com.ar/ml/logo_solucel.png" alt="logo" style="height:45px; whidth:208px; margin-top: 20px;margin-bottom : 15px">
+						</div>
+
+						<div class="row text-left negrita h3">Solucel S.R.L.</div>
+						<div class="row text-left h3">Direccion</div>
+						<div class="row text-left h3">Telefono</div>
+					</div>
+				</div>
+
+				<!-- Lado Central -->
+				<div class="column center text-center"> <span id="tipoComprobante">X</span>
+					<br>
+					<span id="leyendaTipoComprobante" class="preimpreso">DOCUMENTO<br>NO VALIDO<br>COMO<br>FACTURA</span>
+				</div>
+
+				<!-- Lado Derecho -->
+				<div class="column right">
+					<div class="container">
+						<div id="lblComprobante" class="row text-center negrita h1">RECIBO</div>
+						<div id="lblNroCmp" class="row text-center negrita h2"><span class="preimpreso">Nro</span> 0001 - 00000168</div>
+						<div class="row text-center h3">ORIGINAL</div>
+						<div class="row text-center h3">&nbsp;</div>
+						<div class="row text-left h3">FECHA <span class="pull-right">12/11/2013</span></div>
+						<div class="row text-left h3">CUIT <span class="pull-right">22-22222222-2</span></div>
+						<div class="row text-left h3">INGRESOS BRUTOS <span class="pull-right">33-33333333-3</span></div>
+						<div class="row text-left h3">INICIO DE ACTIVIDADES <span class="pull-right">01/01/1759</span></div>
+					</div>
+				</div>
+			</header>
+
+			<section>Rosario, 11 de Noviembre de 2013
+				<br>
+				<br>
+				<span class="preimpreso">Recibimos de</span> El Chapulin Colorado
+				<br>
+				<span class="preimpreso">la cantidad de </span><span id="importeEnLetras">QUINIENTOS CUARENTA Y CINTO MIL PESOS</span>
+			</section>
+
+			<section id="sectionMedioPago">
+				<span class="preimpreso">Mediante</span>
+				<div class="row">
+					<span>Efectivo</span>
+					<span class="pull-right negrita importeEnPesos">500.000</span>
+				</div>
+				<div class="row">
+					<span>Transferencia Bancaria</span>
+					<span class="pull-right negrita importeEnPesos">45.000</span>
+				</div>
+			</section>
+
+			<section>
+				<span class="preimpreso">En concepto de</span>
+				<div class="row">
+					<span>Escudo de Coraz&oacute;n</span>
+					<span name="a" class="pull-right negrita importeEnPesos">12.900</span>
+				</div>
+				<div class="row">
+					<span>Chipote chill&oacute;n</span>
+					<span name="a" class="pull-right negrita importeEnPesos">45.000</span>
+				</div>
+				<div class="row">
+					<span>Pastillas de Chiquitolina</span>
+					<span name="a" class="pull-right negrita importeEnPesos">500</span>
+				</div>
+				<div class="row">
+					<span>Antenitas de vinil</span>
+					<span name="a" class="pull-right negrita importeEnPesos">37</span>
+				</div>
+				<div class="row">
+					<span>Chicharra Paralizadora</span>
+					<span name="a" class="pull-right negrita importeEnPesos">486.563</span>
+				</div>
+			</section>
+
+			<footer>
+
+				<section id="son"> <span class="preimpreso">SON:</span>
+					<output id="totalRecibo" class="negrita importeEnPesos">545.000</output>
+				</section>
+
+				<section id="firma">
+					<div id="hr" class="pull-right">&nbsp;</div>
+					<p class="text-right">Mi Empresa</p>
+				</section>
+
+			</footer>
+		</div><!-- bordeRecibo -->
+	</div><!-- Page1 -->
+	<script src="../js/jquery-1.9.1.min.js" charset="utf-8"></script>
+	<script src="../js/angular.min.js" charset="utf-8"></script>
+	<script src="../js/numerosaletras.js" charset="utf-8"></script>
+<script>
+$(document).ready(function($) {
+	alert(NumeroALetras("10893"))
+});
+</script>
+</body>
+</html>

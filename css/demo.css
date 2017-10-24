@@ -1,0 +1,224 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	background-attachment: fixed;
+	background-position: 50% 50%;
+	background-size: cover;
+}
+.logo{
+	width:45px !important;
+}
+.navbar{
+	font-family: 'Open Sans'!important;
+}
+a {
+	text-decoration: underline;
+}
+a:hover {
+	text-decoration: none;
+}
+
+.header_tabla {
+	background:#9cd7ed;
+	height:50px;
+}
+
+.filtro {
+	margin:10px;
+	display:inline;
+}
+
+.bg-red {
+	background-image: url(../img/bg-red.jpg);
+}
+.bg-orange {
+	background-image: url(../img/bg-orange.jpg);
+}
+.bg-yellow {
+	background-image: url(../img/bg-yellow.jpg);
+}
+.bg-green {
+	background-image: url(../img/bg-green.jpg);
+}
+.bg-cyan {
+	background-image: url(../img/bg-cyan.jpg);
+}
+.bg-blue {
+	background-image: url(../img/bg-blue.jpg);
+}
+.bg-purple {
+	background-image: url(../img/bg-purple.jpg);
+}
+.bg-pink {
+	background-image: url(../img/bg-pink.jpg);
+}
+.bg-black {
+	background-image: url(../img/bg-black.jpg);
+}
+
+.body {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 40px;
+}
+.body-s {
+	max-width: 400px;
+}
+.modal {
+	padding: 25px 30px;
+	background: rgba(255,255,255,0.9);
+	font: 13px/1.55 'Open Sans', Helvetica, Arial, sans-serif;
+	color: #666;
+}
+.modal a {
+	color: #2da5da;
+}
+
+@media screen and (max-width: 600px) {
+	.body {
+		padding: 20px;
+	}
+}
+.estado_sinarreglo {
+	background: red;
+	color: white;
+}
+.estado_sinrevisar {
+	background: white;
+}
+.estado_reparado {
+		background: green;
+		color: white;
+}
+.estado_enproceso {
+		background: yellow;
+		color: black;
+}
+.estado_presupuesto {
+		background: #c408ff;
+		color: black;
+}
+
+#dropzone {
+  position: relative;
+  border: 10px dotted #03a9f4;
+  border-radius: 20px;
+  color: #03a9f4;
+  font-size: 20px;
+  font-weight: bold;
+  height: 200px;
+  margin:30px auto;
+  text-align: center;
+  width: 200px;
+  line-height: 150%;
+}
+
+#dropzone.hover {
+  border: 10px solid #FE5;
+  color: #FE5;
+}
+
+#dropzone.dropped {
+  background: #222;
+  border: 10px solid #444;
+}
+
+#dropzone div {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#dropzone img {
+  border-radius: 10px;
+  vertical-align: middle;
+  max-width: 95%;
+  max-height: 95%;
+}
+
+#dropzone [type="file"] {
+  cursor: pointer;
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.alertedit {
+	padding: 20px;
+	background-color: #6abc6e;
+	color: white;
+	margin-top:40px;
+	display:none;
+	font-size:18px;
+}
+
+.alertclient {
+	padding: 15px !important;
+	background-color: #6abc6e;
+	color: white;
+	margin-top:40px;
+	display:none;
+	font-size:14px;
+	text-align: center;
+}
+.alertorder {
+	padding: 15px !important;
+	background-color: #6abc6e;
+	color: white;
+	margin-top:40px;
+	display:none;
+	font-size:14px;
+	text-align: center;
+}
+
+.alertclient_red {
+	padding: 15px !important;
+	background-color: red;
+	color: white;
+	margin-top:40px;
+	display:none;
+	font-size:14px;
+	text-align: center;
+}
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltiptext {
+		display: none;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+
+}
+
+/* Tooltip arrow */
+.tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}

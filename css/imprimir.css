@@ -1,0 +1,52 @@
+@media print {
+  @page {
+    size: 210mm 297mm !important;
+    }
+  .zoom {
+    zoom:140% !important;
+  }
+  .body {
+    margin-top: -70px !important;
+  }
+  fieldset {
+    padding : 1px 1px 1px !important;
+    border-top: 0px !important;
+  }
+  .sky-form section {
+    margin-bottom: 2px !important;
+  }
+  .button {
+    display:none !important;
+  }
+
+  #mensajeimpresion {
+    display:inline !important;
+  }
+
+  #datosimpresion {
+    display:inline !important;
+  }
+  .text {
+    display:inline !important;
+  }
+  .icon-append {
+    display: none !important;
+  }
+  .patron {
+    border: 1px solid black;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-bottom: 5px !important;
+  }
+  ol {
+    font-size: 9px !important;
+  }
+  .info{
+    display: inline !important;
+    font-size: 10px !important;
+  }
+  .select2-container--default .select2-selection--multiple {
+    display:none !important;
+  }
+}

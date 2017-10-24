@@ -1,0 +1,90 @@
+body, html{
+  background-color:#DEDEDE;
+  font-family:"Arial";
+}
+#page{
+	width:297mm;
+	height:210mm;
+	background-color:white;
+	margin-left:auto;
+	margin-right:auto;
+    padding: 10mm;
+	/*box-shadow: 0 0 50px #888888;*/
+}
+
+@page {
+  size: landscape;
+}
+
+@media print {
+  body{background-color:#FFFFFF;}
+  #page{box-shadow:none;padding:10mm;margin:0;width: 267mm;height: 180mm;}
+  button, #botonera{display:none;}
+  #formAngular {display:none;}
+}
+
+.bordeRecibo{border:1px solid #000000;margin:0;padding:0;height:100%;position:relative;width: 45%;float:left;}
+.bordeRecibo + .bordeRecibo{float: right;}
+.bordeRecibo section{padding:20px;}
+
+header{height:17%;border-bottom:1px solid #000000;}
+header>div{float:left;padding-top:8px;}
+header div.left, header div.right{width:40%;}
+header div.center{width:calc(20% - 2px);border-left:1px solid #000000; border-right:1px solid #000000;}
+header img{width: 100%;margin-bottom:12px}
+section{padding-top:20px;padding-bottom:20px;}
+section, pre{margin:0px;}
+
+footer{position:absolute; bottom:0;left:0;right:0;padding-top:20px;} /*Para que el footer llegue hasta abajo*/
+
+.column{height: calc(100% - 8px);}
+.row{left:0;right:0;position:relative;}
+.text-center{text-align:center;}
+.text-left{text-align:left;}
+.text-right{text-align:right;}
+.negrita{font-weight:bold;}
+.preimpreso{color:#999999;text-transform:uppercase;}
+.h1{font-size:18px;}
+.h2{font-size:12px;}
+.h3{font-size:10px;}
+.container{margin:0 10px 0 10px;}
+.importeEnPesos:before{content:'$';}
+.col-6{width: 100%;float: left;}
+.hr{width:30%;border-top:1px solid #000000;height:1px;position:absolute;}
+.pull-right{position:absolute;right:0;}
+
+#lblOriginalDuplicado{line-height: 200%;}
+#leyendaTipoComprobante{font-size:10px;}
+#tipoComprobante, #lblComprobante{margin:0;}
+#lblComprobante{line-height:18px;}
+#tipoComprobante{font-size:30px;line-height: 30px;margin-bottom: 10px;}
+#lblNroCmp{line-height:200%;}
+#hr{width:30%;border-top:1px solid #000000;height:1px;position:absolute;}
+#firma{padding-top:15mm;position:relative;}
+#firma p{margin:4px 0 2px 0;font-size: 10px;}
+
+
+/*BOTONERA*/
+button{
+	color:#FFFFFF;
+	background-color:#428BCA;
+	border: 1px solid #357EBD;
+	padding:6px 12px;
+	margin-bottom:5px;
+	text-align: center;
+	cursor: pointer;
+	font-weight:bold;
+}
+
+#botonera{
+	z-index:999;
+	position:absolute;
+	left:10px;
+	top:10px;
+}
+
+#formAngular {
+  position: relative;
+  float:left;
+  padding: 20px 15% 20px 120px;
+}
