@@ -55,7 +55,7 @@ echo '<div class="table-responsive">
     </thead>
     <tbody>';
         while($reg = mysqli_fetch_array($ordenes)) {
-          echo "<tr class='clickable-row' data-href='search.php?id=$reg[id]' data-estado='$reg[estado]' data-id='$reg[id]'>";
+          echo "<tr onclick=\"clicka('search.php?id=$reg[id]')\" data-estado='$reg[estado]' data-id='$reg[id]'>";
           echo "<td>$reg[letra]$reg[orden]</td>";
           echo "<td>$reg[fechacreacion]</td>";
           echo "<td>$reg[nombre]</td>";

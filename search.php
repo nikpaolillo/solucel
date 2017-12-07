@@ -109,10 +109,7 @@
 
 
     jQuery(document).ready(function($) {
-    $(".clickable-row").click(function() {
-        window.document.location = $(this).data("href");
-    });
-
+    
     colores();
 
   });
@@ -129,6 +126,10 @@
         colores();
       });
   }
+
+  function clicka(link) {
+        window.document.location = link;
+  }s
     </script>
 
     <style>
@@ -449,7 +450,7 @@
           <tbody>
             <?php
               while($reg = mysqli_fetch_array($ordenes)) {
-                echo "<tr class='clickable-row' data-href='search.php?id=$reg[id]' data-estado='$reg[estado]' data-id='$reg[id]'>";
+                echo "<tr onclick=\"clicka('search.php?id=$reg[id]')\" data-estado='$reg[estado]' data-id='$reg[id]'>";
                 echo "<td>$reg[letra]$reg[orden]</td>";
                 echo "<td>$reg[fechacreacion]</td>";
                 echo "<td>$reg[nombre]</td>";
